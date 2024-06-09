@@ -9,7 +9,7 @@ Ye Zhu, Yu Wu, Duo Xu, Zhiwei Deng, Yan Yan, Olga Russakovsky
 
 ### Updates:
 
-- (06/2024) This codebase is still under construction and will be further structured and improved to facilitate its use.
+- (06/2024) This codebase is still under construction and will be further structured and improved to facilitate its use. 
 
 
 <p align="center">
