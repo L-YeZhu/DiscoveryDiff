@@ -1,7 +1,8 @@
 data:
-    dataset: "IMAGENET"
-    category: "IMAGENET"
-    image_size: 512
+    dataset: "RADIATION"
+    category: "RADIATION"
+    base_model: "AFHQ"
+    image_size: 256
     channels: 3
     logit_transform: false
     uniform_dequantization: false
@@ -11,6 +12,7 @@ data:
     num_workers: 0
 
 model:
+    model_path: "pretrained/afhqdog_p2.pt"
     type: "simple"
     in_channels: 3
     out_ch: 3

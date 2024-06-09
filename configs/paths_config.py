@@ -1,18 +1,19 @@
 DATASET_PATHS = {
-	'FFHQ': '/n/fs/visualai-scr/Data/CelebA-HQ/',
-	'CelebA_HQ': '/n/fs/visualai-scr/Data/CelebA-HQ/',
-	'AFHQ': '/n/fs/visualai-scr/Data/AFHQ-Dog/',
-	'LSUN':  '/n/fs/yz-diff/dataset/',
-    'IMAGENET': 'data/imagenet/',
-    'CUSTOME':'syn_imgs/'
+	'CELEBA': '/n/fs/yz-diff/UnseenDiffusion/imgs/human/',
+	'AFHQ': '/n/fs/yz-diff/UnseenDiffusion/imgs/dogs/',
+	'BEDROOM': '/n/fs/yz-diff/UnseenDiffusion/imgs/bedroom/',
+	'CHURCH': '/n/fs/yz-diff/UnseenDiffusion/imgs/church/',
+    'GALAXY': "/n/fs/yz-diff/Discovery/astro_data/galaxy/original/",
+    'RADIATION':"/n/fs/yz-diff/Discovery/astro_data/radiation/original_ref/",
+    'CUSTOME':'syn_imgs/',
 }
 
 MODEL_PATHS = {
 	'AFHQ': "pretrained/afhqdog_p2.pt",
-	'FFHQ': "pretrained/ffhq_10m.pt",
-	'ir_se50': 'pretrained/model_ir_se50.pth',
-    'IMAGENET': "pretrained/512x512_diffusion.pt",
-	'shape_predictor': "pretrained/shape_predictor_68_face_landmarks.dat.bz2",
+    'BEDROOM': "pretrained/bedroom.ckpt",
+    'CHURCH': "pretrained/church_outdoor.ckpt",
+    'CELEBA': "pretrained/celeba_hq.ckpt",
+    'shape_predictor': "pretrained/shape_predictor_68_face_landmarks.dat.bz2",
 }
 
 

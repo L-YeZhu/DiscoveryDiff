@@ -1,6 +1,6 @@
 data:
-    dataset: "CELEBA"
-    category: "CELEBA"
+    dataset: "GALAXY"
+    category: "GALAXY"
     base_model: "AFHQ"
     image_size: 256
     channels: 3

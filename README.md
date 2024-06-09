@@ -43,6 +43,8 @@ pip install -r requirements.txt
 
 ### 2.2 Datasets
 
+The dataset paths can be modified in ```./configs/paths_configs.py``` file.
+
 - Natural images: 
 
 I have tested some natural image domains including those from AFHQ-Dog, CelebA-HQ, and LSUN as demonstrations. These datasets are commonly used image datasets in computer vision, and all of them are open-access. Feel free to download and play with them from their corresponding sources.
@@ -50,7 +52,7 @@ I have tested some natural image domains including those from AFHQ-Dog, CelebA-H
 
 - Astrophysical images: 
 
-In addition to the natural images, I have tested several astrophysical datasets as unseen target domains in this project, which includes [Galaxy Zoo](https://data.galaxyzoo.org) and the radiation field of the molecular clouds (from [this paper](https://iopscience.iop.org/article/10.3847/1538-4357/acfedc)). Those datasets feature larger domain gaps with respect to the training domains given a pre-trained DDPM.
+In addition to the natural images, I have tested several astrophysical datasets as unseen target domains in this project, which includes [Galaxy Zoo](https://data.galaxyzoo.org) and the radiation field of the molecular clouds (from [this paper](https://iopscience.iop.org/article/10.3847/1538-4357/acfedc)). Those datasets feature larger domain gaps with respect to the training domains given a pre-trained DDPM, also yeild better performance under our proposed method.
 
 For the tested astrophysical datasets, Galaxy Zoo is an open-access dataset that contains real images of galaxies and annotations. The radiation field data has been used in Dr Duo Xu's previously published paper *Predicting the Radiation Field of Molecular Clouds Using Denoising Diffusion Probabilistic Models* in the Astrophysical Journal. In case you are interested in doing further research with the astrophysical dataset, we recommend you contact me or/and Dr. Duo Xu for more details.
 
@@ -61,10 +63,11 @@ Note that the original data of the radiation field **are not images but physical
 
 ### 2.3 Base diffusion models
 
-I used several different pre-trained diffusion generative models as base models for experiments as demonstrations, different base models along with their training datasets may yield diverse effects. 
+I used several different pre-trained diffusion generative models as base models for experiments as demonstrations, different base models along with their training datasets may yield diverse effects. The paths to the pre-trained models can be modified also in ```./configs/paths_configs.py``` file. 
 
 
-#### Generic and Unconditional DMs 
+
+#### Generic and unconditional DMs 
 You can find those model checkpoints from existing open sources depending on the resolution and DDPM variants you want to experiment with. The choices of the base model should stay consistent with your experimental datasets in terms of resolutions.
 For easy usage, I include the links to my own model collections below (I didn't train those base models, credits to previous researchers): [iDDPM trained on AFHQ-Dog in 256 resolutions](https://drive.google.com/file/d/1QVzY-G5qV-e1WWLEMaUsRscbVgtaYPnv/view?usp=share_link), [DDPM trained on CelebA in 256 resolutions](https://drive.google.com/file/d/1nvZBEPlXBKle2ib-X6Bsfyxt1l__4CNj/view?usp=share_link), [DDPM trained on LSUN-church in 256 resolutions](https://drive.google.com/file/d/1LHFon1Mjl1uBG91LHvTL1hsFvxYdGoU2/view?usp=share_link), [DDPM trained on LSUN-Bedroom in 256 resolutions](https://drive.google.com/file/d/1C2BREKRaaGr6VlpNqLbaQwjHeLuDcYsR/view?usp=share_link).
 
@@ -88,17 +91,13 @@ And then followed by the question of how we can leverage its powerful representa
 
 ### 3.1 Unseen reconstruction
 
-Given a pre-trained diffusion domain on a single domain dataset (e.g., dog faces on AFHQ-Dog-256), we aim to show that the pre-trained model can reconstruct an arbitraty image with deterministic inversion and denoising processes.
+Given a pre-trained diffusion domain on a single domain dataset (e.g., dog faces on AFHQ-Dog-256), we aim to show that the pre-trained model can reconstruct an arbitraty image with deterministic inversion and denoising processes [1].
 
 To test this, you can use the following:
 
 ```
-python main.py --config {DATASET}.yml --unseen_reconstruct 
+python main.py --config {DATASET}.yml --unseen_reconstruct --img_path {}
 ```
-
-The following are non-cherry-picky qualitative examples from natural and astro images.
-
-<!-- Add a figure for reconstruction -->
 
 
 
@@ -106,26 +105,20 @@ The following are non-cherry-picky qualitative examples from natural and astro i
 
 ### 3.2 Inverted unseen priors
 
-For the inversion part, I followed my previous implementations based on DDIM paper [1].
+For the inversion part, I used my implementations from [BoundaryDiffusion](https://github.com/L-YeZhu/BoundaryDiffusion) based on DDIM paper [1].
 
 
 ```
-python main.py --config {DATASET}.yml --inversion -- 
+python main.py --config {DATASET}.yml --inversion --
 ```
 
 
 
 
 
-### 3.3 (Optional) Separability verification
-
-While I have verified the separability between ID and OOD priors for most cases in the paper, you are welcome to test this at your own, in case you want to apply our proposed method in your own image domains.
+### 3.3 Domain interference
 
 
-<!-- As for statistical verification, the method we have used in the paper is to compute several geometric metrics including  -->
-
-
-As a simple empirical verification, you can fit a simple linear classifier (SVM) on the inverted latent encodings 
 
 
 

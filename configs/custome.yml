@@ -1,6 +1,7 @@
 data:
     dataset: "AFHQ"
     category: "dog"
+    base_model: "CELEBA"
     image_size: 256
     channels: 3
     logit_transform: false
@@ -12,6 +13,7 @@ data:
 
 model:
     type: "simple"
+    model_path: "pretrained/celeba_hq.ckpt"
     in_channels: 3
     out_ch: 3
     ch: 128
