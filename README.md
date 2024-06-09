@@ -101,11 +101,9 @@ python main.py --config {DATASET}.yml --unseen_reconstruct --exp ./runs/ --n_inv
 
 
 
-
-
 ### 3.2 Inverted unseen priors
 
-For the inversion part, I used my implementations from [BoundaryDiffusion](https://github.com/L-YeZhu/BoundaryDiffusion) based on DDIM paper [1].
+For the inversion part, the function ```--inversion``` converts the raw OOD data to the ```t_0``` latent space.
 
 
 ```
