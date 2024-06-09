@@ -30,8 +30,8 @@ def parse_args_and_config():
     parser.add_argument('--align_face', type=int, default=1, help='align face or not')
 
     # Sampling
-    parser.add_argument('--t_0', type=int, default=500, help='Return step in [0, 1000)')
-    parser.add_argument('--n_inv_step', type=int, default=40, help='# of steps during generative pross for inversion')
+    parser.add_argument('--t_0', type=int, default=900, help='Return step in [0, 1000)')
+    parser.add_argument('--n_inv_step', type=int, default=80, help='# of steps during generative pross for inversion')
     parser.add_argument('--n_train_step', type=int, default=6, help='# of steps during generative pross for train')
     parser.add_argument('--n_test_step', type=int, default=40, help='# of steps during generative pross for test')
     parser.add_argument('--sample_type', type=str, default='ddim', help='ddpm for Markovian sampling, ddim for non-Markovian sampling')

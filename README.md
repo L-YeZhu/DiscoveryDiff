@@ -56,7 +56,7 @@ In addition to the natural images, I have tested several astrophysical datasets 
 
 For the tested astrophysical datasets, Galaxy Zoo is an open-access dataset that contains real images of galaxies and annotations. The radiation field data has been used in Dr Duo Xu's previously published paper *Predicting the Radiation Field of Molecular Clouds Using Denoising Diffusion Probabilistic Models* in the Astrophysical Journal. In case you are interested in doing further research with the astrophysical dataset, we recommend you contact me or/and Dr. Duo Xu for more details.
 
-Note that the original data of the radiation field **are not images but physical quantities**, we process and visualize them as images in this project for illustration purposes for researchers outside the astrophysical field.  
+Note that the original data of the radiation field **are not images but physical quantities**, we process and visualize them as images in this project for illustration purposes for researchers outside the astrophysical field. If you are interested in how we can interpret those radiation data in RGB, we have a small section in the appendices of the paper for brief clarification.
 
 
 
@@ -111,9 +111,18 @@ python main.py --config {DATASET}.yml --inversion --exp ./runs/ --n_inv_step 80 
 ```
 
 
+### 3.3 Baseline of vanilla fine-tuning
+
+We mainly compare with the vanilla fine-tuning method as the baseline in this project. In fact, we found that vanilla tuning with only image supervisions is extremely hard for pre-trained DDPMs, and impose almost no impact on the synthesized output even for close domain transitions.
+You can test the vanilla fine-tuning using the command below:
 
 
-## 4. Latent sampling techniques
+```
+python main.py --config {DATASET}.yml --finetune --exp ./runs/ 
+```
+
+
+## 4. Latent Sampling Methods
 
 This is the key technical challenge for this project, due to the mode interference issue that we have described in the paper.
 It is possible to perform latent sampling with various techniques, below I list one of them that use the latent directions and some geometric optimizations.
