@@ -8,3 +8,4 @@ opencv_python>=4.5.2.52
 ftfy>=6.0.3
 regex>=2021.10.23
 dlib>=19.22.1
+diffusers==0.17.1

@@ -9,7 +9,7 @@ Ye Zhu, Yu Wu, Duo Xu, Zhiwei Deng, Yan Yan, Olga Russakovsky
 
 ### Updates:
 
-- (06/2024) While the code should be mostly ready to use, I may continue fixing some minor bugs.
+- (06/2024) This codebase is still under construction and will be further structured and improved to facilitate its use.
 
 
 <p align="center">
@@ -96,7 +96,7 @@ Given a pre-trained diffusion domain on a single domain dataset (e.g., dog faces
 To test this, you can use the following:
 
 ```
-python main.py --config {DATASET}.yml --unseen_reconstruct --img_path {}
+python main.py --config {DATASET}.yml --unseen_reconstruct --exp ./runs/ --n_inv_step 80 --t_0 900 --eta 0.0
 ```
 
 
@@ -109,16 +109,8 @@ For the inversion part, I used my implementations from [BoundaryDiffusion](https
 
 
 ```
-python main.py --config {DATASET}.yml --inversion --
+python main.py --config {DATASET}.yml --inversion --exp ./runs/ --n_inv_step 80 --t_0 900 --eta 0.0
 ```
-
-
-
-
-
-### 3.3 Domain interference
-
-
 
 
 
@@ -126,17 +118,19 @@ python main.py --config {DATASET}.yml --inversion --
 ## 4. Latent sampling techniques
 
 This is the key technical challenge for this project, due to the mode interference issue that we have described in the paper.
-It is possible to perform latent sampling with various techniques.
+It is possible to perform latent sampling with various techniques, below I list one of them that use the latent directions and some geometric optimizations.
 
-
+```
+python main.py --config {DATASET}.yml --unseen_sample --exp ./runs/ --n_inv_step 80 --t_0 900 --eta 0.0
+```
 
 
 
 
 ## 5. Evaluations and Applications
 
-The evaluation should in general follow the corresponding protocols of the end tasks. 
-In other words, if your objective is to generate new natural images, then it is possible to evaluate the results based on some commonly used scores such as FID. However, if your end task is more specific, you may want to follow whatever evaluations the end application areas are doing.
+The evaluation should generally follow the corresponding protocols of the end tasks. 
+In other words, if your objective is to generate new natural images, then it is possible to evaluate the results based on some commonly used scores like FID. However, if your end task is more specific, as in our showcase with the astrophysical data simulation, you may want to follow whatever evaluations the end application areas are doing.
 
 
 
